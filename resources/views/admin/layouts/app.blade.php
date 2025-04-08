@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin Dashboard') | Sewa Rumah</title>
+    <title>@yield('title', 'Admin Dashboard') | Tole Kos</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/t.png') }}">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -69,7 +71,7 @@
             <!-- Sidebar -->
             <div class="col-md-2 px-0 sidebar">
                 <div class="d-flex justify-content-center align-items-center py-4">
-                    <h4 class="text-white mb-0">Sewa Rumah</h4>
+                    <h4 class="text-white mb-0">Tole Kos</h4>
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -78,15 +80,17 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('admin.properties') ? 'active' : '' }}" href="{{ route('admin.properties') }}">
+                        <a class="nav-link {{ request()->routeIs('admin.properties.index') ? 'active' : '' }}" href="{{ route('admin.properties.index') }}">
                             <i class="fas fa-home"></i> Properties
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                    </li>
+    <a class="nav-link" href="{{ route('admin.profile.edit') }}">
+        <i class="fas fa-user-cog"></i>
+        <span>Edit Profile</span>
+    </a>
+</li>
+
                 </ul>
                 
                 <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
@@ -118,6 +122,10 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @stack('scripts')
+
 </body>
 </html>
 

@@ -34,13 +34,22 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="lokasi" class="form-label">Lokasi <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('lokasi') is-invalid @enderror" 
-                                   id="lokasi" name="lokasi" value="{{ old('lokasi') }}" required>
+                            <label for="lokasi" class="form-label">Kabupaten/Kota <span class="text-danger">*</span></label>
+                            <select class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" id="lokasi" required>
+                                <option value="" disabled selected>-- Pilih Kabupaten/Kota --</option>
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city->nama_kota }}" {{ old('lokasi') == $city->nama_kota ? 'selected' : '' }}>
+                                        {{ $city->nama_kota }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            
                             @error('lokasi')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        
+                        
 
                         <div class="mb-3">
                             <label for="alamat" class="form-label">Link Google Maps <span class="text-danger">*</span></label>
@@ -83,6 +92,19 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="mb-3">
+    <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
+    <select name="status" class="form-control @error('status') is-invalid @enderror" required>
+    <option value="Available" {{ old('status') == 'Available' ? 'selected' : '' }}>Available</option>
+    <option value="Sold" {{ old('status') == 'Sold' ? 'selected' : '' }}>Sold</option>
+</select>
+
+
+    @error('status')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
                         </div>
                     </div>
                     
@@ -148,7 +170,7 @@
                 </div>
 
                 <div class="mt-4 d-flex justify-content-between">
-                    <a href="{{ route('admin.properties') }}" class="btn btn-secondary">
+                    <a href="{{ route('admin.properties.index') }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left me-1"></i> Kembali
                     </a>
                     <button type="submit" class="btn btn-primary">
@@ -161,7 +183,9 @@
 </div>
 
 <script>
+    
 document.addEventListener('DOMContentLoaded', function() {
+    
     // Cover image preview
     const coverInput = document.getElementById('gambar_cover');
     const coverPreview = document.getElementById('cover-preview');
@@ -220,18 +244,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Format price input with thousand separator
-    const hargaInput = document.getElementById('harga');
+    // Format price input with thousand separato
     
-    hargaInput.addEventListener('input', function() {
-        // Remove non-digit characters
-        let value = this.value.replace(/\D/g, '');
-        
-        // Format with thousand separator
-        if (value) {
-            this.value = new Intl.NumberFormat('id-ID').format(value);
-        }
-    });
+    
 });
 </script>
 @endsection

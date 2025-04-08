@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 class Admin extends Authenticatable
 {
     use Notifiable;
+    public $timestamps = false;
 
     protected $table = 'admin';
     

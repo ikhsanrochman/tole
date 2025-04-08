@@ -23,6 +23,10 @@ class Rumah extends Model
         'harga', 
         'status'
     ];
+    protected $casts = [
+        'gambar_detail' => 'array',
+    ];
+    
 
     public function getGambarDetailArrayAttribute()
     {
@@ -31,6 +35,6 @@ class Rumah extends Model
 
     public function getFormattedHargaAttribute()
     {
-        return 'Rp ' . number_format($this->harga, 0, ',', '.');
+        return 'Rp ' . number_format((float)$this->harga, 0, ',', '.');
     }
 }

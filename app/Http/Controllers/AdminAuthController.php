@@ -82,4 +82,36 @@ class AdminDashboardController extends Controller
         $properties = Rumah::all();
         return view('admin.properties', compact('properties'));
     }
+    public function editProfile()
+{
+    $admin = Auth::guard('admin')->user();
+    return view('admin.profile.edit', compact('admin'));
+}
+
+public function updateProfile(Request $request)
+{
+    $admin = Auth::guard('admin')->user();
+
+    $rules = [
+        'email' => 'required|email|max:255|unique:admin,email,' . $admin->id,
+        'whatsapp' => 'required|string|max:20',
+    ];
+
+    if ($request->filled('password')) {
+        $rules['password'] = 'min:6';
+    }
+
+    $validated = $request->validate($rules);
+
+    $admin->email = $validated['email'];
+    $admin->whatsapp = $validated['whatsapp'];
+
+    if (!empty($validated['password'])) {
+        $admin->password = md5($validated['password']); // Sesuai dengan sistem login kamu
+    }
+
+    $admin->save();
+
+    return redirect()->route('admin.profile.edit')->with('success', 'Profil berhasil diperbarui!');
+}
 }

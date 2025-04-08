@@ -56,11 +56,24 @@
     <div class="container mx-auto px-6">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Properti Tersedia</h2>
         <p class="text-center text-gray-600 mb-12">Temukan rumah yang sesuai dengan kebutuhan Anda</p>
+        <form method="GET" action="{{ route('home') }}" class="mb-8 flex flex-col md:flex-row items-center justify-center gap-4">
+            <select name="city" class="w-full md:w-1/3 p-3 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
+                <option value="">-- Pilih Kota --</option>
+                @foreach($cities as $city)
+                    <option value="{{ $city->nama_kota }}" {{ request('city') == $city->nama_kota ? 'selected' : '' }}>
+                        {{ $city->nama_kota }}
+                    </option>
+                @endforeach
+            </select>
+            <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition">
+                Filter
+            </button>
+        </form>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($properties as $property)
             <div class="bg-white rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
-                <img src="{{ asset('storage/rumah/'.$property->gambar_cover) }}" alt="{{ $property->nama_rumah }}" class="w-full h-64 object-cover">
+                <img src="{{ asset('storage/public/properties/cover/'.$property->gambar_cover) }}" alt="{{ $property->nama_rumah }}" class="w-full h-64 object-cover">
                 
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-2">
@@ -86,8 +99,8 @@
                     </div>
                     
                     <div class="flex justify-between items-center">
-                        <span class="text-xl font-bold text-blue-600">Rp {{ number_format($property->harga, 0, ',', '.') }}</span>
-                        <a href="{{ route('property.details', $property->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Detail</a>
+                    <span class="text-xl font-bold text-blue-600">Rp {{ number_format($property->harga, 0, ',', '.') }}</span>
+                    <a href="{{ route('property.details', $property->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Detail</a>
                     </div>
                 </div>
             </div>
@@ -102,59 +115,5 @@
     </div>
 </section>
 
-<section id="contact" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="md:flex">
-                <div class="md:w-1/2 bg-blue-600 p-8 text-white">
-                    <h2 class="text-2xl font-bold mb-4">Hubungi Kami</h2>
-                    <p class="mb-6">Tertarik dengan properti kami? Hubungi kami untuk informasi lebih lanjut atau jadwalkan kunjungan.</p>
-                    
-                    <div class="mb-4">
-                        <div class="flex items-start mb-3">
-                            <i class="fas fa-phone-alt mt-1 mr-3"></i>
-                            <div>
-                                <h3 class="font-semibold">Telepon</h3>
-                                <p>+62 878 2479 5784</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start mb-3">
-                            <i class="fas fa-envelope mt-1 mr-3"></i>
-                            <div>
-                                <h3 class="font-semibold">Email</h3>
-                                <p>admin@email.com</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
-                            <div>
-                                <h3 class="font-semibold">Alamat</h3>
-                                <p>Tempen Baturono RT 04, RW 02</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2 p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Kirim Pesan</h2>
-                    <form>
-                        <div class="mb-4">
-                            <label for="name" class="block text-gray-700 font-medium mb-2">Nama</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-gray-700 font-medium mb-2">Pesan</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                        </div>
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition">Kirim Pesan</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 @endsection

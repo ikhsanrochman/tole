@@ -53,14 +53,14 @@ public function store(Request $request)
 
     // Handle cover image upload
     $coverImageName = time() . '_' . $request->file('gambar_cover')->getClientOriginalName();
-    $request->file('gambar_cover')->storeAs('public/uploads', $coverImageName);
+    $request->file('gambar_cover')->storeAs('properties', $coverImageName);
 
     // Handle multiple detail images/videos
     $detailFiles = [];
     if ($request->hasFile('gambar_detail')) {
         foreach ($request->file('gambar_detail') as $file) {
             $detailFileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/uploads', $detailFileName);
+            $file->storeAs('properties', $detailFileName);
             $detailFiles[] = $detailFileName;
         }
     }
@@ -83,4 +83,5 @@ public function store(Request $request)
     return redirect()->route('admin.properties')
         ->with('success', 'Property added successfully');
 }
+
 }

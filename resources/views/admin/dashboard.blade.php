@@ -87,7 +87,7 @@
                                     <td>{{ $property->nama_rumah }}</td>
                                     <td>{{ $property->lokasi }}</td>
                                     <td>{{ $property->luas_bangunan }} m²</td>
-                                    <td>Rp {{ number_format($property->harga, 0, ',', '.') }}</td>
+                                    <td>Rp {{ $property->harga}}</td>
                                     <td>
                                         <span class="badge {{ $property->status == 'Available' ? 'bg-success' : 'bg-secondary' }}">
                                             {{ $property->status ?: 'Available' }}

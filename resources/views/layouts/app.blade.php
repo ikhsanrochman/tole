@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SewaRumah - Temukan Rumah Sewa Impian Anda</title>
+    <title>Tole Kos - Temukan Rumah Sewa Impian Anda</title>
     <meta name="description" content="Layanan penyewaan rumah terbaik dengan berbagai pilihan properti berkualitas.">
     
     <!-- Fonts -->
+    <link rel="icon" type="image/png" href="{{ asset('images/t.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -67,18 +68,19 @@
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
-                <a href="{{ route('home') }}" class="text-2xl font-bold text-blue-600">SewaRumah</a>
+            <a href="{{ route('home') }}" class="flex items-center space-x-0 text-2xl font-bold text-blue-600">
+                <img src="{{ asset('images/t.png') }}" alt="Logo" class=" h-11 w-11">
+                <span></span>
+            </a>
+
                 
-                <div class="hidden md:flex space-x-6">
+                <div class="hidden md:flex flex-1 justify-center space-x-6">
                     <a href="{{ route('home') }}" class="text-gray-800 hover:text-blue-600 transition">Beranda</a>
                     <a href="#properties" class="text-gray-800 hover:text-blue-600 transition">Properti</a>
                     <a href="#features" class="text-gray-800 hover:text-blue-600 transition">Fitur</a>
-                    <a href="#contact" class="text-gray-800 hover:text-blue-600 transition">Kontak</a>
                 </div>
                 
-                <div class="hidden md:block">
-                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">Hubungi Kami</a>
-                </div>
+                
                 
                 <div class="md:hidden">
                     <button type="button" id="mobile-menu-button" class="text-gray-500 hover:text-gray-800">
@@ -92,7 +94,6 @@
                 <a href="{{ route('home') }}" class="block py-2 text-gray-800 hover:text-blue-600">Beranda</a>
                 <a href="#properties" class="block py-2 text-gray-800 hover:text-blue-600">Properti</a>
                 <a href="#features" class="block py-2 text-gray-800 hover:text-blue-600">Fitur</a>
-                <a href="#contact" class="block py-2 text-gray-800 hover:text-blue-600">Kontak</a>
                 <a href="#contact" class="block py-2 mt-2 bg-blue-600 text-white text-center font-semibold rounded">Hubungi Kami</a>
             </div>
         </nav>
@@ -106,10 +107,16 @@
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-8">
                 <div>
-                    <h3 class="text-2xl font-bold mb-4">SewaRumah</h3>
+                    <h3 class="text-2xl font-bold mb-4">Tole Kos</h3>
                     <p class="mb-4 text-gray-400">Kami menyediakan layanan penyewaan rumah terbaik dengan harga terjangkau dan fasilitas lengkap.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-white hover:text-blue-400"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/6287824795784" 
+                        class="text-white hover:text-blue-400" 
+                        target="_blank" 
+                        rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+
                         <a href="#" class="text-white hover:text-blue-400"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="text-white hover:text-blue-400"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="text-white hover:text-blue-400"><i class="fab fa-youtube"></i></a>
@@ -122,7 +129,6 @@
                         <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-white transition">Beranda</a></li>
                         <li><a href="#properties" class="text-gray-400 hover:text-white transition">Properti</a></li>
                         <li><a href="#features" class="text-gray-400 hover:text-white transition">Fitur</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Kontak</a></li>
                     </ul>
                 </div>
                 
@@ -139,14 +145,14 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-envelope mt-1 mr-3 text-blue-400"></i>
-                            <span>admin@email.com</span>
+                            <span>tolekosbusiness@gmail.com</span>
                         </li>
                     </ul>
                 </div>
             </div>
             
             <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400">
-                <p>&copy; {{ date('Y') }} SewaRumah. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Tole Kos. All rights reserved.</p>
             </div>
         </div>
     </footer>
